@@ -16,7 +16,7 @@ const testAddUserToList = async (mailService: SendrgridMailService) => {
 
 const testGetContactsByEmail = async (mailService: SendrgridMailService): Promise<MailContact[]> => {
    const getContactsByEmailEvent: GetContactsEvent = {
-      emails: ['radojevic.stefan.sr@gmail.com', 'sradojevic@icefyresolutions.com'],
+      emails: ['radojevic.stefan.sr@gmail.com'],
    };
 
    const contacts = await mailService.getUsersByEmails(getContactsByEmailEvent);
