@@ -1,0 +1,10 @@
+{
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "printWidth": 120,
+  "arrowParens": "always",
+  "bracketSameLine": true,
+  "parser": "babel-ts",
+  "tabWidth": 3,
+  "trailingComma": "all"
+}
