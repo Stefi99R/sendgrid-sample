@@ -1,7 +1,7 @@
 {
   "name": "sendgrid-sample",
   "version": "1.0.0",
-  "description": "",
+  "description": "A tool for efficiently managing contacts in SendGrid's marketing lists, featuring capabilities to add, remove, and retrieve contacts using SendGrid's API.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/Stefi99R/sendgrid-sample.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Stefi99R/sendgrid-sample/issues"
   },
