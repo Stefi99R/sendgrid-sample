@@ -1,22 +1,22 @@
 import { AddUserToListEvent, GetContactsEvent, MailContact } from './interfaces/mail.interface';
-import SendrgridMailService from './services/mail.service';
+import SendGridMailService from './services/mail.service';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const testAddUserToList = async (mailService: SendrgridMailService) => {
+const testAddUserToList = async (mailService: SendGridMailService) => {
    const newUser: AddUserToListEvent = {
-      firstName: 'Stefan',
-      lastName: 'Radojevic',
-      email: 'radojevic.stefan.sr@gmail.com',
+      firstName: 'TestFirstName',
+      lastName: 'TestLastName',
+      email: 'test-email@gmail.com',
    };
 
    await mailService.addUserToList(newUser);
 };
 
-const testGetContactsByEmail = async (mailService: SendrgridMailService): Promise<MailContact[]> => {
+const testGetContactsByEmail = async (mailService: SendGridMailService): Promise<MailContact[]> => {
    const getContactsByEmailEvent: GetContactsEvent = {
-      emails: ['radojevic.stefan.sr@gmail.com'],
+      emails: ['test-email@gmail.com'],
    };
 
    const contacts = await mailService.getUsersByEmails(getContactsByEmailEvent);
@@ -26,23 +26,23 @@ const testGetContactsByEmail = async (mailService: SendrgridMailService): Promis
    return contacts;
 };
 
-const testDeleteContactsByIds = async (mailService: SendrgridMailService, contacts: MailContact[]): Promise<void> => {
+const testDeleteContactsByIds = async (mailService: SendGridMailService, contacts: MailContact[]): Promise<void> => {
    const contactIds = contacts.map((contact) => contact.id);
 
    await mailService.removeUserFromList({ ids: contactIds });
 };
 
 const main = async () => {
-   const mailService = new SendrgridMailService();
+   const mailService = new SendGridMailService();
 
    // Add user to marketing list
-   // await testAddUserToList(mailService);
+   await testAddUserToList(mailService);
 
    // Get users from marketing list by emails
-   const contacts = await testGetContactsByEmail(mailService);
+   // const contacts = await testGetContactsByEmail(mailService);
 
    // Remove user from marketing list
-   await testDeleteContactsByIds(mailService, contacts);
+   // await testDeleteContactsByIds(mailService, contacts);
 };
 
 main();

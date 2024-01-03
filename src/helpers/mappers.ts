@@ -1,6 +1,6 @@
 import { MailContact } from '../interfaces/mail.interface';
 
-export const mapSendgridGetResponsesToContactUsers = (responses: any[]): MailContact[] => {
+export const mapSendGridGetResponsesToContactUsers = (responses: any[]): MailContact[] => {
    let contacts: MailContact[] = [];
 
    for (const response of responses) {

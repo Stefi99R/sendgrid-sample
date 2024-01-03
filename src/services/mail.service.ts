@@ -5,10 +5,10 @@ import {
    AddUserToListEvent,
    GetContactsEvent,
 } from '../interfaces/mail.interface';
-import { mapSendgridGetResponsesToContactUsers } from '../helpers/mappers';
+import { mapSendGridGetResponsesToContactUsers } from '../helpers/mappers';
 const client = require('@sendgrid/client');
 
-export default class SendrgridMailService {
+export default class SendGridMailService {
    private readonly mailService: MailService;
 
    constructor() {
@@ -18,8 +18,9 @@ export default class SendrgridMailService {
    }
 
    /**
-    * Method that adds a user to a SendGrid marketing list.
-    * @param event User details: first name, last name and email address.
+    * Adds a user to the SendGrid marketing list.
+    * @param {AddUserToListEvent} event - Object containing the user's first name, last name, and email.
+    * @returns {Promise<void>} - A promise that resolves when the user has been successfully added.
     */
    addUserToList = async (event: AddUserToListEvent): Promise<void> => {
       const data = {
@@ -53,8 +54,9 @@ export default class SendrgridMailService {
    };
 
    /**
-    * Removes the users with the specified IDs from the marketing list.
-    * @param event IDs of users that are to be deleted from the marketing list.
+    * Removes a user from the SendGrid marketing list.
+    * @param {RemoveUsersFromListEvent} event - Object containing the IDs of users to remove.
+    * @returns {Promise<void>} - A promise that resolves when the users have been successfully removed.
     */
    removeUserFromList = async (event: RemoveUsersFromListEvent): Promise<void> => {
       const queryParams = {
@@ -81,8 +83,9 @@ export default class SendrgridMailService {
    };
 
    /**
-    * Method that fetches the users from a specific SendGrid list by email addresses.
-    * @param emails List of email addresses of users to fetch.
+    * Retrieves users by email from the SendGrid marketing list.
+    * @param {GetContactsEvent} event - Object containing the emails to search for.
+    * @returns {Promise<MailContact[]>} - A promise that resolves with an array of MailContact objects.
     */
    getUsersByEmails = async (event: GetContactsEvent): Promise<MailContact[]> => {
       const data = {
@@ -102,7 +105,7 @@ export default class SendrgridMailService {
       try {
          const responses = await client.request(request);
 
-         return mapSendgridGetResponsesToContactUsers(responses);
+         return mapSendGridGetResponsesToContactUsers(responses);
       } catch (error) {
          throw error;
       }
